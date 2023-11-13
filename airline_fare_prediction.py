@@ -35,18 +35,19 @@ def display_output(origin_airport, destination_airport, departure_date, departur
     departure_datetime = datetime.combine(departure_date, departure_time)
     search_datetime = datetime.combine(search_date, departure_time)
     df_refund, df_layover, df_airline, df_fare = functions.predict(origin_airport, destination_airport, departure_datetime, cabin_type, search_datetime)
-    tab1, tab2, tab3, tab4 = st.tabs(["Archit's model", "Mahjabeen's model", "Rohan's model", "Smit's model"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Average fare prediction", "Airline fare predictions", "Layover fare predictions", "Refundable vs Non-refundable fare prediction"])
     with tab1:
-        st.dataframe(df_refund, hide_index=True)
+        st.dataframe(df_fare, hide_index=True)
 
     with tab2:
-        st.dataframe(df_layover, hide_index=True)
+        st.dataframe(df_airline, hide_index=True)
 
     with tab3:
-        st.dataframe(df_airline) #, hide_index=True
+        st.write('This model is in progress and will be available soon')
+        #st.dataframe(df_layover, hide_index=True)
 
     with tab4:
-        st.dataframe(df_fare, hide_index=True)
+        st.dataframe(df_refund, hide_index=True)
     
 # Title
 st.header('Data Product with Machine Learning')
