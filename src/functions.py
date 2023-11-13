@@ -8,7 +8,7 @@ import numpy as np
 fare_model = load('models/average_fare_model.joblib')
 airline_model = load('models/airline_model.joblib')
 refund_model = load('models/refund_model.joblib')
-#layover_model = load('models/layover_model.joblib')
+layover_model = load('/Volumes/DriveA/adv_mla_asgn3_streamlit/models/layover_model3.9.joblib')
 
 def predict(origin_airport, destination_airport, departure_datetime, cabin_type, search_datetime=None):
     if not(search_datetime):
@@ -122,8 +122,11 @@ df_Cabin_Type = pd.read_csv('data/raw/Final_cleaned_Dataset7.csv', usecols=selec
 cabin_types = ['Select Cabin Type'] + df_Cabin_Type['segmentsCabinCode'].unique().tolist()
 
 def layover_predict(df):
-    return df
-# Mahjabeen's code end
+    display_cols = ['isNonStop', 'predictedFare']
+    df['isNonStop'] = 0
+    df = pd.concat([df, df.assign(isNonStop=1)], ignore_index=True)
+    df['predictedFare'] = layover_model.predict(df).round(2)
+    return df[display_cols]
 
 def refund_predict(df):
     display_cols = ['isRefundable', 'predictedFare']
