@@ -8,7 +8,7 @@ import numpy as np
 fare_model = load('models/average_fare_model.joblib')
 airline_model = load('models/airline_model.joblib')
 refund_model = load('models/refund_model.joblib')
-layover_model = load('/Volumes/DriveA/adv_mla_asgn3_streamlit/models/layover_model3.9.joblib')
+layover_model = load('models/layover_model3.9.joblib')
 
 def predict(origin_airport, destination_airport, departure_datetime, cabin_type, search_datetime=None):
     if not(search_datetime):
