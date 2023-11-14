@@ -8,6 +8,5 @@ pandas==2.0.1
 
 joblib==1.2.0
 
-python version =>3.9 & <=3.11
 
-sudo apt-get install python3-distutils [error on python version 3.12]
+
